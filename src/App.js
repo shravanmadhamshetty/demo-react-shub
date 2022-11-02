@@ -1,105 +1,63 @@
 import "./App.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import * as ReactBootStrap from "react-bootstrap";
+import userData from "./util/data.js";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import Header from "./components/Header";
+import SideNav from "./components/SideNav";
+import Button from "react-bootstrap/Button";
+import FormModal from "./components/FormModal";
 
 function App() {
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 200,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 300,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 400,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 500,
-    },
-    {
-      id: 5,
-      name: "Product 1",
-      price: 200,
-    },
-    {
-      id: 6,
-      name: "Product 2",
-      price: 300,
-    },
-    {
-      id: 7,
-      name: "Product 3",
-      price: 400,
-    },
-    {
-      id: 8,
-      name: "Product 4",
-      price: 500,
-    },
-    {
-      id: 9,
-      name: "Product 1",
-      price: 200,
-    },
-    {
-      id: 10,
-      name: "Product 2",
-      price: 300,
-    },
-    {
-      id: 11,
-      name: "Product 3",
-      price: 400,
-    },
-    {
-      id: 12,
-      name: "Product 4",
-      price: 500,
-    },
-  ];
+  const products = userData;
   const columns = [
     {
-      dataField: "id",
-      text: "Product ID",
-      sort: true,
-    },
-    {
       dataField: "name",
-      text: "Product Name",
+      text: "Name",
+      sort: true,
+      filter: textFilter(),
     },
     {
-      dataField: "price",
-      text: "Product Price",
+      dataField: "email",
+      text: "Email ID",
+      filter: textFilter(),
+    },
+    {
+      dataField: "dob",
+      text: "DOB",
+    },
+    {
+      dataField: "company",
+      text: "Company",
     },
   ];
 
   const defaultSorted = [
     {
-      dataField: "id",
-      order: "desc",
+      dataField: "name",
+      order: "asc",
     },
   ];
 
+  const handleClick = () => {};
+
   return (
-    <div className="App">
-      <BootstrapTable
-        bootstrap4
-        keyField="id"
-        data={products}
-        columns={columns}
-        defaultSorted={defaultSorted}
-        pagination={paginationFactory()}
-      />
-    </div>
+    <>
+      <Header />
+      <SideNav />
+      <div className="App">
+        <FormModal />
+        <BootstrapTable
+          bootstrap4
+          keyField="id"
+          data={products}
+          columns={columns}
+          defaultSorted={defaultSorted}
+          pagination={paginationFactory()}
+          filter={filterFactory()}
+        />
+      </div>
+    </>
   );
 }
 

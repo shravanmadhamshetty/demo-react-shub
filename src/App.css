@@ -39,3 +39,7 @@
     transform: rotate(360deg);
   }
 }
+
+.react-bootstrap-table {
+  margin-top: 10px;
+}
